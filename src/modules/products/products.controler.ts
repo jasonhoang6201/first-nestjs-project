@@ -1,28 +1,31 @@
 import { Controller, Get, Post, Put, Delete } from '@nestjs/common';
+import { ProductsService } from './products.service';
 @Controller('products')
 export class ProductsController {
+  constructor(private readonly productsService: ProductsService) {}
+
   @Get()
   getProducts() {
-    return 'List of products';
+    return this.productsService.getProducts();
   }
 
   @Get(':productId')
   getDetailProduct() {
-    return 'One product';
+    return this.productsService.getDetailProduct();
   }
 
   @Post()
   createProduct() {
-    return 'Create product';
+    return this.productsService.createProduct();
   }
 
   @Put(':productId')
   updateProduct() {
-    return 'Update product';
+    return this.productsService.updateProduct();
   }
 
   @Delete(':productId')
   deleteProduct() {
-    return 'Delete product';
+    return this.productsService.deleteProduct();
   }
 }
